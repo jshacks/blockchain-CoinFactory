@@ -1,0 +1,14 @@
+"use strict";
+var express = require('express');
+var path = require('path');
+var cors = require('cors');
+var compress = require('compression');
+require('source-map-support/register');
+require('reflect-metadata');
+var port = 8080;
+var app = express();
+app.use(cors());
+app.use(compress({}));
+app.use(express.static(path.join(__dirname, './dist')));
+console.log('App started on port => ', port);
+app.listen(port);

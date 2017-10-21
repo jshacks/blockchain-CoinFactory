@@ -8,7 +8,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "server" : "cp index.js ./dist",
+    "dependencies" : "cp -R ./node_modules ./dist"
+
   },
   "private": true,
   "dependencies": {
@@ -26,7 +29,8 @@
     "core-js": "^2.4.1",
     "hammerjs": "^2.0.8",
     "rxjs": "^5.4.2",
-    "zone.js": "^0.8.14"
+    "zone.js": "^0.8.14",
+    "cors": "^2.8.1"
   },
   "devDependencies": {
     "@angular/cli": "1.4.9",
