@@ -4,20 +4,34 @@ import { MaterialModule } from '../materialmodule/material.module';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from "@angular/router";
+import { Coin, CoinDetails, Home } from '../routes'
 
 import { AppComponent } from './app.component';
 
+export const rootRouterConfig: Routes = [
+  { path: "", redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: Home },
+  { path: 'coin', component: Coin },
+  { path: 'coindetails', component: CoinDetails }
+
+
+]
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    Coin,
+    CoinDetails,
+    Home
   ],
   imports: [
     BrowserModule,
     MaterialModule,
     FormsModule,
     HttpModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot(rootRouterConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

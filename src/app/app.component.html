@@ -1,19 +1,21 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div>
   <mat-toolbar color="primary">
-    <span><mat-icon>euro_symbol</mat-icon></span>
 
-    <span>Coin Factory</span>
+      <span>Coin Factory</span>
+
+    <mat-toolbar-row>
+      <span>
+        <button mat-raised-button color="accent" [routerLink]="['/coin']" [routerLinkActive]="['active']">Coins</button>
+      </span>
+    </mat-toolbar-row>
 
   </mat-toolbar>
-  <mat-menu x-position="before" #menu="matMenu">
-    <button mat-menu-item>Option 1</button>
-    <button mat-menu-item>Option 2</button>
-  </mat-menu>
-    <br>
-    <img style='width:65%;height:auto;display:block;margin:auto' [src]="imgUrl" alt="">
+
+  <br>
+
 
 
 
 </div>
-
+<router-outlet></router-outlet>
