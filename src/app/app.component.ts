@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  imgUrl = '../assets/img/coin-factory.svg'
+
+  ngOnInit(){
+
+  }
 }
