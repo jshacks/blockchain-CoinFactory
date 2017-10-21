@@ -3,5 +3,51 @@
 
   <button mat-raised-button color="accent" [routerLink]="['/coin']" [routerLinkActive]="['active']">Back</button>
 
-<h1>DETAILS</h1>
+  <mat-card class="example-card" *ngIf="coin">
+    <mat-card-header>
+
+      <mat-card-title><h3>Coin Details</h3></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Name" [(ngModel)] ="coin.networkjson.token" [ngModelOptions]="{standalone: true}" >
+        </mat-form-field>
+
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Premine Coins" [(ngModel)]="coin.createGenesis.totalPremine" [ngModelOptions]="{standalone: true}">
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Key Hash" [(ngModel)]="coin.networkjson.pubKeyHash" [ngModelOptions]="{standalone: true}">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <p>
+          <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Symbol" [(ngModel)]="coin.networkjson.symbol" [ngModelOptions]="{standalone: true}" ></textarea>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Number of Delegates" [(ngModel)]="coin.createGenesis.numberOfDelegates" [ngModelOptions]="{standalone: true}"></textarea>
+          </mat-form-field>
+        </p>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="date" [ngModelOptions]="{standalone: true}">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </form>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="save(coin)">Save</button>
+    </mat-card-actions>
+  </mat-card>
 </div>
