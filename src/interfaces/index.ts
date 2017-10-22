@@ -2,7 +2,10 @@ export interface Coin {
   createGenesis: {
     totalPremine: number;
     numberOfDelegates: number;
-    genesisAcounts : string[]
+    genesisAcounts : [{
+      address: string,
+      totalCoins: number
+    }]
   }
   networkjson: {
     token: string;

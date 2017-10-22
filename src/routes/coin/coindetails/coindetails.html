@@ -3,15 +3,27 @@
 
   <button mat-raised-button color="accent" [routerLink]="['/coin']" [routerLinkActive]="['active']">Back</button>
 
-  <mat-card class="example-card" *ngIf="coin">
+  <form class="example-form" *ngIf="!id">
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Coin Type" [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}" (ngModelChange)="drop()" >
+        <mat-option [value]="ark" >
+          {{ark}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+  <mat-card class="example-card" *ngIf="showForm && coin">
     <mat-card-header>
 
-      <mat-card-title><h3>Coin Details</h3></mat-card-title>
+      <mat-card-title>
+        <h3>Coin Details</h3>
+      </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form class="example-form">
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Name" [(ngModel)] ="coin.networkjson.token" [ngModelOptions]="{standalone: true}" >
+          <input matInput placeholder="Name" [(ngModel)]="coin.networkjson.token" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
 
         <table class="example-full-width" cellspacing="0">
@@ -31,23 +43,43 @@
 
         <p>
           <mat-form-field class="example-full-width">
-            <textarea matInput placeholder="Symbol" [(ngModel)]="coin.networkjson.symbol" [ngModelOptions]="{standalone: true}" ></textarea>
+            <textarea matInput placeholder="Symbol" [(ngModel)]="coin.networkjson.symbol" [ngModelOptions]="{standalone: true}"></textarea>
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <textarea matInput placeholder="Number of Delegates" [(ngModel)]="coin.createGenesis.numberOfDelegates" [ngModelOptions]="{standalone: true}"></textarea>
           </mat-form-field>
         </p>
 
+
         <mat-form-field>
           <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="date" [ngModelOptions]="{standalone: true}">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+        <h3>Accounts</h3>
+        <p *ngFor="let account of coin.createGenesis.genesisAcounts; let i=index">
+          <mat-form-field>
+            <input matInput placeholder="Address" [(ngModel)]="account.address" [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Coins" [(ngModel)]="account.totalCoins" [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+          <button mat-mini-fab color="accent" (click)="remove(account,i)">
+            <mat-icon>close</mat-icon>
+          </button>
+
+        </p>
+        <p>
+          <button mat-raised-button color="accent" (click)="add()">Add</button>
+        </p>
       </form>
 
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" (click)="save(coin)">Save</button>
+      <button mat-raised-button color="primary" (click)="downloadZip(coin)" *ngIf="id" >Download Zip</button>
+
     </mat-card-actions>
+    <img style='width:100%;height:auto;display:block;margin:auto' [src]="imgUrl" *ngIf="id">
   </mat-card>
 </div>
